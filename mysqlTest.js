@@ -1,31 +1,31 @@
 const model = require('./model.js');
 
 let User = model.User;
-
+let Project = model.Project;
 (async() => {
-	try {
-		var user = await User.create({
-			email: '1235546@qq.com',
-			passwd: '666',
-			name: '776787',
-			gender: true
+//	model.Project.belongsTo(model.User);
+//	model.User.hasMany(model.Project);
+//	try {
+//		var user = await User.create({
+//			email: '2838666797@qq.com',
+//			passwd: '666',
+//			name: '776787',
+//			gender: true
+//		});
+//	} catch(e) {
+//		console.log(e)
+//	}
+//	var project = await Project.create({
+//		project_name:"name1",
+//		baseurl:'http://www.baidu.com',
+//		mockpath_name:'testproject',
+//		createby:user.id
+//	});
+	
+	var projects = await Project.findAll({
+			include: [ {model: User} ]
 		});
-	} catch(e) {
-		console.log(e)
-	}
-	var user = await User.find(
-		{
-        where: {
-            email: '12346@qq.com',
-            passwd:'666'
-        }
-    }
-	);
-	if(user==null){
-		console.log("user not found!");
-	}else{
-		console.log(user.name);
-	}
+	console.log(projects)
 	
 
 })();

@@ -1,0 +1,38 @@
+user 用户表
+[user_id][name][psw][nickname]
+
+request请求表 //请求通过不同参数的组装，形成不同的action
+[request_id][request_name][path][is_mock][method]
+
+params 参数表
+[p_id][method][key][valueType][note][canNull][resuest_id]
+
+paramsFilter 参数定值过滤表
+[f_id][p_id][value][request_id]
+
+filter_action 响应过滤对应action_id
+[fa_id][f_id][action_id]
+
+action 行为表//是请求的路径加上参数的封装
+[action_id][action_name][request_id][deafult][mock_string]
+
+
+moudle 模块表
+[moudle_id][moudle_name][path][project_id]
+
+request_moudle 请求对应模块表
+[id][request_id][moudle_id]
+
+project 项目表
+[project_id][baseurl][project_name][mock_path_name]
+
+
+log 日志表
+[log_id][log_text][log_time][project_id][moudle_id][status][action]
+
++--------------------------------------------------------------+
+代理的情况 127.0.0.1/mock/project/moudle/xxxxxx
+管理的页面 
+127.0.0.1/login
+127.0.0.1/list/moudleID
+127.0.0.1/api/requestID

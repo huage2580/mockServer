@@ -10,14 +10,12 @@ module.exports = {
 			ctx.session.user = user;
         if (user!=null) {
             console.log('signin ok!');
-            ctx.render('signin-ok.html', {
-                title: 'Sign In OK',
-                name: user.name
-            });
+            ctx.redirect('/');
         } else {
             console.log('signin failed!');
-            ctx.render('signin-failed.html', {
-                title: 'Sign In Failed'
+            ctx.render('login.html', {
+                title: 'Sign In Failed',
+                tip:'Power by hua'
             });
         }
     }

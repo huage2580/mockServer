@@ -10,24 +10,26 @@
 
 	<body>
 		<div class="bg">
-			<img src="/static/img/section-background.svg" />
+			<img src="static/img/section-background.svg" />
 			<div id="main" class="mdui-center mdui-shadow-10">
-				<h2 class="mdui-text-color-teal-800 mdui-text-center"><b>MOCKER</b></h2>
+				<h2 class="mdui-text-color-teal-800 mdui-text-center"><b>{{title}}</b></h2>
 				<div class="mdui-divider"></div>
+				<form action="/signin" method="post">
+                       
 				<div class="mdui-textfield mdui-textfield-floating-label mdui-m-l-3 mdui-m-r-3">
 					<label class="mdui-textfield-label">UserName</label>
-					<input class="mdui-textfield-input" type="email" />
+					<input class="mdui-textfield-input" type="email"name="email"/>
 				</div>
 				<div class="mdui-textfield mdui-textfield-floating-label mdui-m-l-3 mdui-m-r-3">
 					<label class="mdui-textfield-label">Password</label>
-					<input class="mdui-textfield-input" type="email" />
+					<input class="mdui-textfield-input" type="password" name="password"/>
 				</div>
-				<button class="mdui-btn mdui-float-right mdui-color-pink-500 mdui-ripple mdui-m-t-3 mdui-m-l-3 mdui-m-r-3">login</button>
+				<button class="mdui-btn mdui-float-right mdui-color-pink-500 mdui-ripple mdui-m-t-3 mdui-m-l-3 mdui-m-r-3" type="submit">login</button>
 				<div class=" mdui-m-t-3 mdui-m-l-3 mdui-m-r-3">
 					<i class="mdui-icon material-icons mdui-text-color-black-disabled">adb</i>
-					<span class="mdui-text-color-black-disabled">Power by hua</span>
+					<span class="mdui-text-color-black-disabled">{{ tip }}</span>
 				</div>
-				
+				</form>
 			</div>
 
 		</div>

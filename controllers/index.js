@@ -2,12 +2,12 @@
 module.exports = {
     'GET /': async (ctx, next) => {
     	var user = ctx.session.user;
-    	if(user!=null){
-    		console.log(user.email)
+    	if(user==null){
     		ctx.redirect('/login');
-    	}
-        ctx.render('index.html', {
-            title: 'Welcome'
+    	}else{
+    		ctx.render('index2.html', {
+            user: user.name
         });
+    	}
     }
 };

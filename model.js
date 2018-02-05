@@ -15,6 +15,14 @@ for (let f of js_files) {
     module.exports[name] = require(__dirname + '/models/' + f);
 }
 
+//-----------------添加关联---------------
+const model = module.exports;
+//----------------------------------------
+//用户-项目 1:m
+model.Project.belongsTo(model.User);
+model.User.hasMany(model.Project);
+//----------------------------------------
+
 module.exports.sync = () => {
     db.sync();
 };

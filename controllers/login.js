@@ -2,7 +2,8 @@
 module.exports = {
     'GET /login': async (ctx, next) => {
         ctx.render('login.html', {
-            title: 'Welcome'
+            tip: 'Power by hua',
+            title:'MOCKER'
         });
     }
 };
