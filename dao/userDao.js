@@ -14,17 +14,4 @@ var exp = {
 	}
 }
 
-//function login(email, psw) {
-//	(async() => {
-//		var user = await User.find({
-//			where: {
-//				email: email,
-//				passwd: psw
-//			}
-//		});
-//		return user;
-//	})();
-//
-//}
-
 module.exports = exp

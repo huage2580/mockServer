@@ -21,6 +21,12 @@ const model = module.exports;
 //用户-项目 1:m
 model.Project.belongsTo(model.User);
 model.User.hasMany(model.Project);
+
+model.Moudle.belongsTo(model.Project);
+model.Project.hasMany(model.Moudle);
+
+model.Request.belongsTo(model.Moudle);
+model.Moudle.hasMany(model.Request);
 //----------------------------------------
 
 module.exports.sync = () => {

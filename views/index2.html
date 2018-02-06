@@ -6,9 +6,11 @@
 		<title></title>
 		<link rel="stylesheet" href="//cdn.bootcss.com/mdui/0.4.0/css/mdui.min.css">
 		<script src="//cdn.bootcss.com/mdui/0.4.0/js/mdui.min.js"></script>
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 
 	<body class="mdui-drawer-body-left mdui-appbar-with-toolbar  mdui-theme-primary-teal mdui-theme-accent-pink">
+		<input type="hidden" id="mid" value="{{mid}}" />
 		<header class="mdui-appbar mdui-appbar-fixed">
 			<div class="mdui-toolbar mdui-color-theme">
 				<a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#main-drawer', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
@@ -44,142 +46,47 @@
 
 				<li class="mdui-list-item mdui-ripple">
 					<i class="mdui-list-item-icon mdui-icon material-icons">home</i>
-					<div class="mdui-list-item-content">这里是项目1</div>
+					<div class="mdui-list-item-content">这里是项目</div>
 				</li>
-
-				<li class="mdui-list-item mdui-ripple">
-					<i class="mdui-list-item-icon mdui-icon material-icons">dashboard</i>
-					<div class="mdui-list-item-content">项目2</div>
-				</li>
+				{% for project in projects %}
 
 				<li class="mdui-collapse-item mdui-collapse-item-open">
 					<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-						<i class="mdui-list-item-icon mdui-icon material-icons">people</i>
-						<div class="mdui-list-item-content">项目大分组</div>
+						<i class="mdui-list-item-icon mdui-icon material-icons">dashboard</i>
+						<div class="mdui-list-item-content">{{project.project_name}}</div>
 						<i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
 					</div>
-					<ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-						<li class="mdui-list-item mdui-ripple">功能小分组</li>
-						<li class="mdui-list-item mdui-ripple">功能小分组</li>
-						<li class="mdui-list-item mdui-ripple mdui-list-item-active">功能小分组</li>
-						<li class="mdui-list-item mdui-ripple">功能小分组</li>
+					<ul class="mdui-collapse-item-body mdui-list mdui-list-dense ">
+						{% for moudle in project.moudles %}
+						<li class="mdui-list-item mdui-ripple moudle-list-item active
+							{% if moudle.id==mid %}
+  								mdui-list-item-active
+							{% endif %}
+							" moudleid="{{moudle.id}}">{{moudle.moudle_name}}</li>
+						{% endfor %}
 					</ul>
 				</li>
-
-				<li class="mdui-collapse-item">
-					<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-						<i class="mdui-list-item-icon mdui-icon material-icons">device_hub</i>
-						<div class="mdui-list-item-content">Acquisition</div>
-						<i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-					</div>
-					<ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-						<li class="mdui-list-item mdui-ripple">Overview</li>
-						<li class="mdui-list-item mdui-ripple">All Traffic</li>
-						<li class="mdui-list-item mdui-ripple">Direct Traffic</li>
-						<li class="mdui-list-item mdui-ripple">Search Overview</li>
-					</ul>
-				</li>
-
-				<li class="mdui-collapse-item">
-					<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-						<i class="mdui-list-item-icon mdui-icon material-icons">touch_app</i>
-						<div class="mdui-list-item-content">Behavior</div>
-						<i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-					</div>
-					<ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-						<li class="mdui-list-item mdui-ripple">Overview</li>
-						<li class="mdui-list-item mdui-ripple">All Pages</li>
-						<li class="mdui-list-item mdui-ripple">Landing Pages</li>
-						<li class="mdui-list-item mdui-ripple">Exit Pages</li>
-					</ul>
-				</li>
-
-				<li class="mdui-list-item mdui-ripple">
-					<i class="mdui-list-item-icon mdui-icon material-icons">shopping_cart</i>
-					<div class="mdui-list-item-content">Ecommerce</div>
-				</li>
-
+				{% endfor %}
 			</ul>
 		</div>
 		<div class="mdui-container-fluid">
 			<div class="items">
+				{% for api in apis %}
 				<div class="item mdui-shadow-2 mdui-ripple">
-					<span class="mdui-text-color-theme" style="font-size: 16px;">[POST]<b>获取用户信息</b></span>
+					<span class="mdui-text-color-theme" style="font-size: 16px;">[{{api.method}}]<b>{{api.request_name}}</b></span>
 					<div class="mdui-divider mdui-m-t-1 mdui-m-b-1"></div>
-					<div class="mdui-m-t-1">MOCK：<span class="mdui-text-color-theme"> 转发测试</span></div>
-					<div class="mdui-m-t-1">修改：<span class="mdui-text-color-theme"> 某某某</span></div>
-					<div class="mdui-m-t-1">更新：<span class="mdui-text-color-theme"> 01-30 10:30</span></div>
+					<div class="mdui-m-t-1">MOCK：<span class="mdui-text-color-theme">
+						 {% if api.is_mock %}
+  								转发测试
+  							{% else %}
+  							转发线上
+						{% endif %}
+					</span></div>
+					<div class="mdui-m-t-1">修改：<span class="mdui-text-color-theme"> {{api.modify}}</span></div>
+					<div class="mdui-m-t-1">更新：<span class="mdui-text-color-theme"> {{api.updatedTime}}</span></div>
 				</div>
-				<div class="item mdui-shadow-2 mdui-ripple">
-					<span class="mdui-text-color-theme" style="font-size: 16px;">[GET]<b>获取用户信息</b></span>
-					<div class="mdui-divider mdui-m-t-1 mdui-m-b-1"></div>
-					<div class="mdui-m-t-1">MOCK：<span class="mdui-text-color-theme"> 转发测试</span></div>
-					<div class="mdui-m-t-1">修改：<span class="mdui-text-color-theme"> 某某某</span></div>
-					<div class="mdui-m-t-1">更新：<span class="mdui-text-color-theme"> 01-30 10:30</span></div>
-				</div>
-				<div class="item mdui-shadow-2 mdui-ripple">
-					<span class="mdui-text-color-theme" style="font-size: 16px;">[PUT]<b>获取用户信息</b></span>
-					<div class="mdui-divider mdui-m-t-1 mdui-m-b-1"></div>
-					<div class="mdui-m-t-1">MOCK：<span class="mdui-text-color-theme"> 转发测试</span></div>
-					<div class="mdui-m-t-1">修改：<span class="mdui-text-color-theme"> 某某某</span></div>
-					<div class="mdui-m-t-1">更新：<span class="mdui-text-color-theme"> 01-30 10:30</span></div>
-				</div>
-				<div class="item mdui-shadow-2 mdui-ripple">
-					<span class="mdui-text-color-theme" style="font-size: 16px;"><b>获取用户信息</b></span>
-					<div class="mdui-divider mdui-m-t-1 mdui-m-b-1"></div>
-					<div class="mdui-m-t-1">MOCK：<span class="mdui-text-color-theme"> 转发测试</span></div>
-					<div class="mdui-m-t-1">修改：<span class="mdui-text-color-theme"> 某某某</span></div>
-					<div class="mdui-m-t-1">更新：<span class="mdui-text-color-theme"> 01-30 10:30</span></div>
-				</div>
-				<div class="item mdui-shadow-2 mdui-ripple">
-					<span class="mdui-text-color-theme" style="font-size: 16px;"><b>获取用户信息</b></span>
-					<div class="mdui-divider mdui-m-t-1 mdui-m-b-1"></div>
-					<div class="mdui-m-t-1">MOCK：<span class="mdui-text-color-theme"> 转发测试</span></div>
-					<div class="mdui-m-t-1">修改：<span class="mdui-text-color-theme"> 某某某</span></div>
-					<div class="mdui-m-t-1">更新：<span class="mdui-text-color-theme"> 01-30 10:30</span></div>
-				</div>
-				<div class="item mdui-shadow-2 mdui-ripple">
-					<span class="mdui-text-color-theme" style="font-size: 16px;"><b>获取用户信息</b></span>
-					<div class="mdui-divider mdui-m-t-1 mdui-m-b-1"></div>
-					<div class="mdui-m-t-1">MOCK：<span class="mdui-text-color-theme"> 转发测试</span></div>
-					<div class="mdui-m-t-1">修改：<span class="mdui-text-color-theme"> 某某某</span></div>
-					<div class="mdui-m-t-1">更新：<span class="mdui-text-color-theme"> 01-30 10:30</span></div>
-				</div>
-				<div class="item mdui-shadow-2 mdui-ripple">
-					<span class="mdui-text-color-theme" style="font-size: 16px;"><b>获取用户信息</b></span>
-					<div class="mdui-divider mdui-m-t-1 mdui-m-b-1"></div>
-					<div class="mdui-m-t-1">MOCK：<span class="mdui-text-color-theme"> 转发测试</span></div>
-					<div class="mdui-m-t-1">修改：<span class="mdui-text-color-theme"> 某某某</span></div>
-					<div class="mdui-m-t-1">更新：<span class="mdui-text-color-theme"> 01-30 10:30</span></div>
-				</div>
-				<div class="item mdui-shadow-2 mdui-ripple">
-					<span class="mdui-text-color-theme" style="font-size: 16px;"><b>获取用户信息</b></span>
-					<div class="mdui-divider mdui-m-t-1 mdui-m-b-1"></div>
-					<div class="mdui-m-t-1">MOCK：<span class="mdui-text-color-theme"> 转发测试</span></div>
-					<div class="mdui-m-t-1">修改：<span class="mdui-text-color-theme"> 某某某</span></div>
-					<div class="mdui-m-t-1">更新：<span class="mdui-text-color-theme"> 01-30 10:30</span></div>
-				</div>
-				<div class="item mdui-shadow-2 mdui-ripple">
-					<span class="mdui-text-color-theme" style="font-size: 16px;"><b>获取用户信息</b></span>
-					<div class="mdui-divider mdui-m-t-1 mdui-m-b-1"></div>
-					<div class="mdui-m-t-1">MOCK：<span class="mdui-text-color-theme"> 转发测试</span></div>
-					<div class="mdui-m-t-1">修改：<span class="mdui-text-color-theme"> 某某某</span></div>
-					<div class="mdui-m-t-1">更新：<span class="mdui-text-color-theme"> 01-30 10:30</span></div>
-				</div>
-				<div class="item mdui-shadow-2 mdui-ripple">
-					<span class="mdui-text-color-theme" style="font-size: 16px;"><b>获取用户信息</b></span>
-					<div class="mdui-divider mdui-m-t-1 mdui-m-b-1"></div>
-					<div class="mdui-m-t-1">MOCK：<span class="mdui-text-color-theme"> 转发测试</span></div>
-					<div class="mdui-m-t-1">修改：<span class="mdui-text-color-theme"> 某某某</span></div>
-					<div class="mdui-m-t-1">更新：<span class="mdui-text-color-theme"> 01-30 10:30</span></div>
-				</div>
-				<div class="item mdui-shadow-2 mdui-ripple">
-					<span class="mdui-text-color-theme" style="font-size: 16px;"><b>获取用户信息</b></span>
-					<div class="mdui-divider mdui-m-t-1 mdui-m-b-1"></div>
-					<div class="mdui-m-t-1">MOCK：<span class="mdui-text-color-theme"> 转发测试</span></div>
-					<div class="mdui-m-t-1">修改：<span class="mdui-text-color-theme"> 某某某</span></div>
-					<div class="mdui-m-t-1">更新：<span class="mdui-text-color-theme"> 01-30 10:30</span></div>
-				</div>
+				{% endfor %}
+				
 			</div>
 		</div>
 		<div class="mdui-fab-wrapper" id="exampleFab" mdui-fab="{trigger: 'hover'}">
@@ -191,7 +98,7 @@
 			<div class="mdui-fab-dial">
 				<button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-pink" mdui-tooltip="{content: '新建项目分组', position: 'left'}" mdui-dialog="{target: '#example-4'}"><i class="mdui-icon material-icons">backup</i></button>
 				<button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red" mdui-tooltip="{content: '新建功能分组', position: 'left'}" mdui-dialog="{target: '#dialog-moudle'}"><i class="mdui-icon material-icons">bookmark</i></button>
-				<button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange" mdui-tooltip="{content: '新建接口', position: 'left'}"><i class="mdui-icon material-icons">access_alarms</i></button>
+				<button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange" mdui-tooltip="{content: '新建接口', position: 'left'}" mdui-dialog="{target: '#dialog-api'}"><i class="mdui-icon material-icons">access_alarms</i></button>
 			</div>
 
 		</div>
@@ -200,17 +107,17 @@
 			<h3 class=" mdui-text-color-teal-800"> 新建项目分类</h3>
 			<div class="mdui-textfield mdui-textfield-floating-label mdui-m-l-3 mdui-m-r-3">
 				<label class="mdui-textfield-label">项目名称</label>
-				<input class="mdui-textfield-input" name="pname" />
+				<input class="mdui-textfield-input" id="pname" />
 			</div>
 			<div class="mdui-textfield mdui-textfield-floating-label mdui-m-l-3 mdui-m-r-3">
 				<label class="mdui-textfield-label">项目基本路径</label>
-				<input class="mdui-textfield-input" name="purl" />
+				<input class="mdui-textfield-input" id="purl" />
 			</div>
 			<div class="mdui-textfield mdui-textfield-floating-label mdui-m-l-3 mdui-m-r-3">
 				<label class="mdui-textfield-label">mock前缀路径</label>
-				<input class="mdui-textfield-input" name="ppath" />
+				<input class="mdui-textfield-input" id="ppath" />
 			</div>
-			<button class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right">新建</button>
+			<button id="create_project" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right">新建</button>
 
 		</div>
 
@@ -218,25 +125,47 @@
 			<h3 class=" mdui-text-color-teal-800"> 新建功能分组</h3>
 			<div class="mdui-p-l-3 mdui-p-t-1 mdui-p-r-3">
 				<span>选择归属项目分组：</span>
-				<select class="mdui-select" mdui-select="{position: 'bottom'}">
-					<option value="1">State 1</option>
+				<select class="mdui-select" mdui-select="{position: 'bottom'}" id="mselect">
+					{% for project in projects %}
+					<option value="{{project.id}}">{{project.project_name}}</option>
+					{% endfor %}
+					<!--<option value="1">State 1</option>
 					<option value="2">State 2</option>
 					<option value="3" disabled>State 3</option>
 					<option value="4">State 4</option>
 					<option value="5">State 5</option>
-					<option value="6">State 6</option>
+					<option value="6">State 6</option>-->
 				</select>
 			</div>
 			<div class="mdui-textfield mdui-textfield-floating-label mdui-m-l-3 mdui-m-r-3">
 				<label class="mdui-textfield-label">模块名称</label>
-				<input class="mdui-textfield-input" name="pname" />
+				<input class="mdui-textfield-input" id="mname" />
 			</div>
 			<div class="mdui-textfield mdui-textfield-floating-label mdui-m-l-3 mdui-m-r-3">
 				<label class="mdui-textfield-label">mock前缀路径</label>
-				<input class="mdui-textfield-input" name="ppath" />
+				<input class="mdui-textfield-input" id="mpath" />
 			</div>
-			
-			<button class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right">新建</button>
+
+			<button id="create_moudle" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right">新建</button>
+
+		</div>
+
+		<div class="mdui-dialog mdui-p-l-3 mdui-p-t-1 mdui-p-r-3" id="dialog-api">
+			<h3 class=" mdui-text-color-teal-800"> 新建接口</h3>
+			<div class="mdui-p-l-3 mdui-p-t-1 mdui-p-r-3">
+				<span>method：</span>
+				<select class="mdui-select" id="apiselect">
+					<option value="GET">GET</option>
+					<option value="POST">POST</option>
+					<option value="PUT">PUT</option>
+					<option value="DELETE">DELETE</option>
+				</select>
+			</div>
+			<div class="mdui-textfield mdui-textfield-floating-label mdui-m-l-3 mdui-m-r-3">
+				<label class="mdui-textfield-label">接口名称</label>
+				<input class="mdui-textfield-input" id="apiname" />
+			</div>
+			<button id="create_api" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right">新建</button>
 
 		</div>
 
@@ -260,6 +189,78 @@
 				padding: 20px;
 			}
 		</style>
+		<script>
+			//新建项目
+			$("#create_project").click(function() {
+				$.post("/project", {
+						name: $("#pname").val(),
+						baseUrl: $("#purl").val(),
+						mockPath: $("#ppath").val()
+					},
+					function(data, status) {
+						if(data.result) {
+							window.location.href = "/";
+						} else {
+							mdui.snackbar({
+								message: '创建项目失败'
+							});
+						}
+
+					});
+			});
+			//新建模块
+			$("#create_moudle").click(function() {
+				$.post("/moudle", {
+						name: $("#mname").val(),
+						mock: $("#mpath").val(),
+						proid: $("#mselect option:selected").val()
+					},
+					function(data, status) {
+						if(data.result) {
+							window.location.href = "/";
+						} else {
+							mdui.snackbar({
+								message: '创建模块失败'
+							});
+						}
+
+					});
+				//				alert("wtf");
+			});
+
+			//新建接口
+			$("#create_api").click(function() {
+				if($('#mid').val()==''){
+					mdui.snackbar({
+								message: '先选择功能分组'
+							});
+					return;
+				}
+				$.post("/api", {
+						name: $("#apiname").val(),
+						method: $("#apiselect option:selected").val(),
+						mid: $('#mid').val()
+					},
+					function(data, status) {
+						if(data.result) {
+							window.location.href = "/?mid=" + $('#mid').val();
+						} else {
+							mdui.snackbar({
+								message: '创建接口失败'
+							});
+						}
+
+					});
+			});
+
+			$(".moudle-list-item").click(function() {
+				var id = $(this).attr("moudleid");
+				$(".mdui-list-item-active").removeClass("mdui-list-item-active");
+				$(this).addClass("mdui-list-item-active");
+				$('#mid').val(id);
+				window.location.href = "/?mid=" + id;
+			});
+		</script>
 	</body>
 
 </html>
