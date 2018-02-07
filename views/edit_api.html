@@ -17,7 +17,7 @@
 			<div class="mdui-toolbar mdui-color-theme">
 				<a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#main-drawer', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
 				<a href="javascript:;" class="mdui-typo-headline">TITLE</a>
-				<a href="javascript:;" class="mdui-typo-title">user</a>
+				<a href="javascript:;" class="mdui-typo-title">{{user}}</a>
 				<div class="mdui-toolbar-spacer"></div>
 				<div class="mdui-textfield mdui-textfield-expandable mdui-float-right" style="max-width: 300px;">
 					<button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
@@ -30,7 +30,7 @@
 						<a href="javascript:;" class="mdui-ripple">Refresh</a>
 					</li>
 					<li class="mdui-menu-item" disabled>
-						<a href="javascript:;">Help & feedback</a>
+						<a href="javascript:;">用户:{{user}}</a>
 					</li>
 					<li class="mdui-menu-item">
 						<a href="javascript:;" class="mdui-ripple">Settings</a>
@@ -210,7 +210,7 @@
 						</div>
 						<div class="mdui-panel-item-body">
 							<div id="my-editormd">
-								<textarea id="my-editormd-markdown-doc" name="my-editormd-markdown-doc" style="display:none;"></textarea>
+								<textarea id="my-editormd-markdown-doc" name="my-editormd-markdown-doc" style="display:none;">#hello</textarea>
 								 <!--注意：name属性的值-->
 								<textarea id="my-editormd-html-code" name="my-editormd-html-code" style="display:none;"></textarea>
 							</div>
@@ -251,8 +251,9 @@
 			}
 		</style>
 		<script type="text/javascript">
+			var edit;
 			$(function() {
-				editormd("my-editormd", { //注意1：这里的就是上面的DIV的id属性值
+				edit = editormd("my-editormd", { //注意1：这里的就是上面的DIV的id属性值
 					width: "90%",
 					height: 640,
 					autoFoucs : false,
@@ -269,6 +270,9 @@
 
 				});
 			});
+			setTimeout("edit.previewing();",2000);
+			//testEditor.getMarkdown()
+			
 		</script>
 	</body>
 

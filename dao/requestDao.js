@@ -26,6 +26,9 @@ var exp = {
 			},
 			order: "updatedAt DESC"
 		});
+	},
+	info: async function(rid){
+		
 	}
 }
 

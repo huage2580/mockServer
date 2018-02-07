@@ -32,12 +32,18 @@
 //	console.log(JSON.stringify(user.projects))
 //
 //})();
-
-//(async () => {
-//  var users = await User.findAll();
-//  console.log(users);
-//})();
-const moment = require('moment') 
-var list = new Date().getTime();
- var f= moment(list).format("MM-DD hh:mm");
-console.log(f)
+const model = require('./model.js');
+//
+let Request = model.Request;
+let Moudle = model.Moudle;
+(async () => {
+    var request = await Request.findOne({
+    	include: [ {model: Moudle} ]
+    });
+    var project = await request. moudle.getProject();
+    console.log(JSON.stringify(project));
+})();
+//const moment = require('moment') 
+//var list = new Date().getTime();
+// var f= moment(list).format("MM-DD hh:mm");
+//console.log(f)
