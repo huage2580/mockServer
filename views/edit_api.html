@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="//cdn.bootcss.com/mdui/0.4.0/css/mdui.min.css">
+		<script src="static/js/jquery.min.js"></script>
+		<script src="//cdn.bootcss.com/mdui/0.4.0/js/mdui.min.js"></script>
+		<link rel="stylesheet" href="static/md/css/editormd.css" />
+
+		<script src="static/md/editormd.js"></script>
+	</head>
+
+	<body class="mdui-drawer-body-left mdui-appbar-with-toolbar  mdui-theme-primary-teal mdui-theme-accent-pink">
+		<header class="mdui-appbar mdui-appbar-fixed">
+			<div class="mdui-toolbar mdui-color-theme">
+				<a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#main-drawer', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+				<a href="javascript:;" class="mdui-typo-headline">TITLE</a>
+				<a href="javascript:;" class="mdui-typo-title">user</a>
+				<div class="mdui-toolbar-spacer"></div>
+				<div class="mdui-textfield mdui-textfield-expandable mdui-float-right" style="max-width: 300px;">
+					<button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
+					<input class="mdui-textfield-input mdui-color-theme " type="text" placeholder="Search" />
+					<button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
+				</div>
+				<a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-menu="{target: '#example-attr'}"><i class="mdui-icon material-icons">more_vert</i></a>
+				<ul class="mdui-menu" id="example-attr">
+					<li class="mdui-menu-item">
+						<a href="javascript:;" class="mdui-ripple">Refresh</a>
+					</li>
+					<li class="mdui-menu-item" disabled>
+						<a href="javascript:;">Help & feedback</a>
+					</li>
+					<li class="mdui-menu-item">
+						<a href="javascript:;" class="mdui-ripple">Settings</a>
+					</li>
+					<li class="mdui-divider"></li>
+					<li class="mdui-menu-item">
+						<a href="javascript:;" class="mdui-ripple">Sign out</a>
+					</li>
+				</ul>
+			</div>
+		</header>
+		<div class="mdui-drawer mdui-drawer-open mdui-color-grey-100" id="main-drawer">
+			<div class="mdui-m-t-5">
+				<span class="mdui-text-color-theme ">[<b>某某</b>]项目URL: </span><br />
+				<span>http://wtf.com</span><br /><br/>
+				<span class="mdui-text-color-theme ">[<b>某某</b>]功能URL: </span><br />
+				<span>/hello/world/</span>
+			</div>
+			<div class="mdui-textfield mdui-m-t-5">
+				<label class="mdui-textfield-label">接口名称</label>
+				<input class="mdui-textfield-input" type="text" />
+			</div>
+			<div class="mdui-m-t-5">
+				<span class="mdui-text-color-black-secondary">接口分组<i class="mdui-icon material-icons mdui-text-color-teal-800">add_box</i></span>
+				<br/>
+				<select class="mdui-select" mdui-select>
+					<option value="1">Statea 1</option>
+					<option value="2">State 2</option>
+					<option value="3" disabled>State 3</option>
+					<option value="4">State 4</option>
+					<option value="5">State 5</option>
+					<option value="6">State 6</option>
+				</select>
+			</div>
+			<div class="mdui-m-t-5" style="width: 100%; display:flex;display: -webkit-flex; justify-content:space-between;align-items:center;">
+				<span class="mdui-text-color-theme mdui-m-l-1">开启Mock</span>
+				<label class="mdui-switch">
+  					<input type="checkbox"/>
+  					<i class="mdui-switch-icon"></i>
+				</label>
+			</div>
+			<div class="mdui-m-t-5">
+				<span>历史记录：</span>
+				<ul style="list-style: none;">
+					<li><span class="mdui-text-color-theme-200">2018.1.30 12:45 某某某</span></li>
+					<li><span class="mdui-text-color-theme-200">2018.1.30 12:45 某某某</span></li>
+					<li><span class="mdui-text-color-theme-200">2018.1.30 12:45 某某某</span></li>
+					<li><span class="mdui-text-color-theme-200">2018.1.30 12:45 某某某</span></li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div class="mdui-container">
+			<div class="mdui-row mdui-m-t-5" style="display: flex;align-items: center;">
+				<select class="mdui-select" style="height: 45px;" mdui-select>
+					<option value="1">State 1</option>
+					<option value="2">State 2</option>
+					<option value="3" disabled>State 3</option>
+					<option value="4">State 4</option>
+					<option value="5">State 5</option>
+					<option value="6">State 6</option>
+				</select>
+				<div class="mdui-textfield" style="flex: 1 1 auto;margin-left: 32px;margin-right: 32px;">
+					<input class="mdui-textfield-input" type="text" placeholder="User Name" />
+				</div>
+
+				<button class="mdui-btn mdui-color-theme-accent mdui-ripple">保存</button>
+			</div>
+			<div class="content mdui-m-t-3">
+				<div class="mdui-panel" mdui-panel>
+
+					<div class="mdui-panel-item mdui-panel-item-open">
+						<div class="mdui-panel-item-header">
+							<span class="mdui-text-color-theme"><b>Request</b></span>
+							<i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+						</div>
+						<div class="mdui-panel-item-body">
+							<div class="mdui-table-fluid mdui-shadow-0">
+								<table class="mdui-table mdui-table-hoverable">
+									<thead>
+										<tr>
+											<th>method</th>
+											<th>key</th>
+											<th>type</th>
+											<th>note</th>
+											<th>#</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr>
+											<td>
+												POST
+											</td>
+											<td>key_test</td>
+											<td>
+												String
+											</td>
+											<td>
+												备注内容
+											</td>
+											<td><i class="mdui-icon material-icons">delete</i></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="mdui-panel-item-actions">
+								<button class="mdui-btn mdui-ripple mdui-color-teal-800">ADD</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="mdui-panel-item mdui-panel-item-open">
+						<div class="mdui-panel-item-header">
+							<span class="mdui-text-color-theme"><b>Response</b></span>
+							<i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+						</div>
+						<div class="mdui-panel-item-body">
+							<div>
+								<div class="mdui-tab" mdui-tab>
+									<a href="#example1-tab1" class="mdui-ripple">action1</a>
+									<a href="#example1-tab2" class="mdui-ripple">action2</a>
+									<a href="#example1-tab3" class="mdui-ripple">action3</a>
+								</div>
+								<div id="example1-tab1" class="mdui-p-a-2">
+									<div class="action-content">
+										<div class="params-fliter">
+											<ul class="mdui-list">
+												<li class="mdui-list-item mdui-ripple">
+													<div class="mdui-list-item-content">key = value</div>
+													<i class="mdui-list-item-icon mdui-icon material-icons">edit</i>
+												</li>
+												<li class="mdui-list-item mdui-ripple">
+													<div class="mdui-list-item-content">key3 = value</div>
+													<i class="mdui-list-item-icon mdui-icon material-icons">edit</i>
+												</li>
+												<li class="mdui-list-item mdui-ripple">
+													<div class="mdui-list-item-content">key2 = value2</div>
+													<i class="mdui-list-item-icon mdui-icon material-icons">edit</i>
+												</li>
+												<li class="mdui-list-item mdui-ripple">
+													<div class="mdui-list-item-content mdui-text-color-theme">添加参数过滤</div>
+													<i class="mdui-list-item-icon mdui-icon mdui-text-color-theme material-icons">add</i>
+												</li>
+											</ul>
+										</div>
+										<div class="mock-text">
+											<div class="mdui-text-center mdui-text-color-teal-800">
+												<span class="mdui-text-center">返回数据(参考mock.js语法)</span>
+												<i class="mdui-icon material-icons mdui-float-right">edit</i>
+											</div>
+											<div class="mdui-m-t-3 mdui-shadow-1" style="min-height: 300px;">
+												<span>
+												hello
+											</span>
+
+											</div>
+
+										</div>
+									</div>
+
+								</div>
+								<div id="example1-tab2" class="mdui-p-a-2">shopping content</div>
+								<div id="example1-tab3" class="mdui-p-a-2">images content</div>
+							</div>
+							<div class="mdui-panel-item-actions">
+								<button class="mdui-btn mdui-ripple mdui-color-teal-800">ADD</button>
+							</div>
+						</div>
+
+					</div>
+					<div class="mdui-panel-item mdui-panel-item-open">
+						<div class="mdui-panel-item-header">
+							<span class="mdui-text-color-theme"><b>Doc</b></span>
+							<i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+						</div>
+						<div class="mdui-panel-item-body">
+							<div id="my-editormd">
+								<textarea id="my-editormd-markdown-doc" name="my-editormd-markdown-doc" style="display:none;"></textarea>
+								 <!--注意：name属性的值-->
+								<textarea id="my-editormd-html-code" name="my-editormd-html-code" style="display:none;"></textarea>
+							</div>
+							<div class="mdui-panel-item-actions">
+								<button class="mdui-btn mdui-ripple mdui-color-teal-800">SAVE</button>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<style>
+			.mdui-drawer {
+				padding-left: 16px;
+				padding-right: 16px;
+			}
+			
+			li {
+				margin-top: 8px;
+			}
+			
+			.params-fliter {
+				width: 300px;
+				position: relative;
+				float: ;
+			}
+			
+			.mock-text {
+				margin: 20px;
+				width: 100%;
+			}
+			
+			.action-content {
+				display: flex;
+			}
+		</style>
+		<script type="text/javascript">
+			$(function() {
+				editormd("my-editormd", { //注意1：这里的就是上面的DIV的id属性值
+					width: "90%",
+					height: 640,
+					autoFoucs : false,
+					emoji : true,
+					syncScrolling: "single",
+					path: "/static/md/lib/", //注意2：你的路径
+					saveHTMLToTextarea: true, //注意3：这个配置，方便post提交表单
+                    taskList: true,
+                    tocm: true, // Using [TOCM]
+                    autofocus:false,
+                    flowChart: true,//开启流程图支持，默认关闭
+                    sequenceDiagram: true,//开启时序/序列图支持，默认关闭,
+                    codeFold: true
+
+				});
+			});
+		</script>
+	</body>
+
+</html>
